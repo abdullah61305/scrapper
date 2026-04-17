@@ -83,18 +83,20 @@ header[data-testid="stHeader"] { background: transparent !important; border: non
   margin: 0 auto;
 }
 
-/* ── TOP-LEFT FIXED LOGO ─────────────────────────────────── */
+/* ── TOP-CENTER FIXED LOGO ─────────────────────────────────── */
 .plug-logo-fixed {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 260px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
   z-index: 10000;
-  padding: 14px 20px 12px;
-  background: linear-gradient(180deg, #050505 70%, transparent 100%);
+  padding: 15px 20px 25px;
+  background: radial-gradient(ellipse at top, rgba(5,5,5,0.95) 40%, transparent 100%);
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  align-items: center; /* Center horizontally */
+  gap: 4px;
 }
 
 .circuit-traces {
@@ -105,33 +107,37 @@ header[data-testid="stHeader"] { background: transparent !important; border: non
 .plug-wordmark {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   letter-spacing: 0.06em;
-  color: var(--cyan);
+  color: #E6FFFF; /* Whiter base for clarity */
   text-shadow:
-    0 0 6px rgba(0,255,255,0.9),
-    0 0 20px rgba(0,255,255,0.5),
-    0 0 45px rgba(0,255,255,0.2);
+    0 0 10px rgba(0,255,255,1),
+    0 0 25px rgba(0,255,255,0.8),
+    0 0 50px rgba(0,255,255,0.5);
   animation: logo-flicker 3.5s steps(1) 0.3s 1, logo-glow-pulse 4s ease-in-out 3.8s infinite;
   line-height: 1;
   user-select: none;
+  text-align: center;
 }
 
 .plug-wordmark .dot-ai {
-  color: rgba(0,255,255,0.5);
-  font-size: 1.1rem;
+  color: #00FFFF;
+  font-size: 1.2rem;
+  text-shadow: 0 0 15px rgba(0,255,255,1);
 }
 
 .plug-sub {
   font-family: var(--font-mono);
   font-size: 0.58rem;
-  color: var(--muted);
+  color: var(--cyan);
+  opacity: 0.8;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   display: flex;
   align-items: center;
   gap: 6px;
   margin-top: 3px;
+  text-shadow: 0 0 8px rgba(0,255,255,0.4);
 }
 
 .live-dot {
@@ -139,7 +145,7 @@ header[data-testid="stHeader"] { background: transparent !important; border: non
   width: 5px; height: 5px;
   border-radius: 50%;
   background: var(--cyan);
-  box-shadow: 0 0 6px var(--cyan);
+  box-shadow: 0 0 8px var(--cyan), 0 0 12px var(--cyan);
   animation: live-pulse 2s ease-in-out infinite;
   flex-shrink: 0;
 }
@@ -160,21 +166,22 @@ header[data-testid="stHeader"] { background: transparent !important; border: non
 @keyframes logo-glow-pulse {
   0%,100% {
     text-shadow:
-      0 0 6px rgba(0,255,255,0.9),
-      0 0 20px rgba(0,255,255,0.5),
-      0 0 45px rgba(0,255,255,0.2);
+      0 0 10px rgba(0,255,255,1),
+      0 0 25px rgba(0,255,255,0.8),
+      0 0 50px rgba(0,255,255,0.5);
   }
   50% {
     text-shadow:
-      0 0 10px rgba(0,255,255,1),
-      0 0 30px rgba(0,255,255,0.7),
-      0 0 70px rgba(0,255,255,0.35);
+      0 0 15px rgba(0,255,255,1),
+      0 0 35px rgba(0,255,255,0.9),
+      0 0 70px rgba(0,255,255,0.6),
+      0 0 100px rgba(0,255,255,0.3);
   }
 }
 
 @keyframes live-pulse {
-  0%,100% { opacity: 1; box-shadow: 0 0 6px var(--cyan); }
-  50%      { opacity: 0.3; box-shadow: 0 0 2px var(--cyan); }
+  0%,100% { opacity: 1; box-shadow: 0 0 8px var(--cyan); }
+  50%     { opacity: 0.4; box-shadow: 0 0 3px var(--cyan); }
 }
 
 /* ── SIDEBAR ─────────────────────────────────────────────── */
@@ -473,7 +480,7 @@ header[data-testid="stHeader"] { background: transparent !important; border: non
 
 
 # ============================================================
-# TOP-LEFT FIXED LOGO — Circuit Trace Wordmark
+# TOP-CENTER FIXED LOGO — Circuit Trace Wordmark
 # ============================================================
 st.markdown("""
 <div class="plug-logo-fixed">
@@ -582,7 +589,8 @@ with st.sidebar:
 # ============================================================
 # 4. MAIN AREA
 # ============================================================
-st.markdown('<div style="height:4rem;"></div>', unsafe_allow_html=True)
+# Increased top margin so content doesn't collide with the centered logo
+st.markdown('<div style="height:5.5rem;"></div>', unsafe_allow_html=True)
 
 st.markdown("""
 <div class="page-header">
