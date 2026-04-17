@@ -1,0 +1,7 @@
+streamlit
+groq
+pdfplumber
+pandas
+sentence-transformers
+scikit-learn
+requests
